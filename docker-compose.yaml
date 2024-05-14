@@ -1,0 +1,23 @@
+services:
+  db:
+    container_name: django-pg
+    image: postgres:16-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data
+    env_file:
+      - .env
+  app:
+    container_name: django-app
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./app:/app
+      - ./data/web/static:/data/web/static/
+      - ./data/web/media:/data/web/media/
+    env_file:
+      - .env
+    depends_on:
+      - db

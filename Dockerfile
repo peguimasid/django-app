@@ -4,15 +4,17 @@ LABEL mantainer="guilhermomasid@gmail.com"
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-COPY . /app
+COPY manage.py .
+COPY requirements.txt .
 
-WORKDIR /app
+COPY core /core
+COPY scripts /scripts
 
 EXPOSE 8000
 
 RUN python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
-  /venv/bin/pip install -r /app/requirements.txt && \
+  /venv/bin/pip install -r /requirements.txt && \
   adduser --disabled-password --no-create-home duser && \
   mkdir -p /data/web/static && \
   mkdir -p /data/web/media && \
@@ -21,9 +23,9 @@ RUN python -m venv /venv && \
   chown -R duser:duser /data/web/media && \
   chmod -R 755 /data/web/static && \
   chmod -R 755 /data/web/media && \
-  chmod -R +x /app/scripts
+  chmod -R +x /scripts
 
-ENV PATH="/app/scripts:/venv/bin:$PATH"
+ENV PATH="/scripts:/venv/bin:$PATH"
 
 USER duser
 

@@ -14,7 +14,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./app:/app
+      - ./:/app
       - ./data/web/static:/data/web/static/
       - ./data/web/media:/data/web/media/
     env_file:

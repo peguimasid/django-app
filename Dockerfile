@@ -5,11 +5,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 COPY . /code
-COPY scripts /scripts
 
 WORKDIR /code
-
-RUN ls
 
 EXPOSE 8000
 
@@ -24,9 +21,9 @@ RUN python -m venv /venv && \
   chown -R duser:duser /data/web/media && \
   chmod -R 755 /data/web/static && \
   chmod -R 755 /data/web/media && \
-  chmod -R +x /scripts
+  chmod -R +x /code
 
-ENV PATH="/scripts:/venv/bin:$PATH"
+ENV PATH="/code/scripts:/venv/bin:$PATH"
 
 USER duser
 

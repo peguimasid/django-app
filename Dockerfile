@@ -4,17 +4,18 @@ LABEL mantainer="guilhermomasid@gmail.com"
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-COPY manage.py .
-COPY requirements.txt .
-
-COPY core /core
+COPY . /code
 COPY scripts /scripts
+
+WORKDIR /code
+
+RUN ls
 
 EXPOSE 8000
 
 RUN python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
-  /venv/bin/pip install -r /requirements.txt && \
+  /venv/bin/pip install -r /code/requirements.txt && \
   adduser --disabled-password --no-create-home duser && \
   mkdir -p /data/web/static && \
   mkdir -p /data/web/media && \

@@ -30,4 +30,4 @@ ENV PATH="/scripts:/venv/bin:$PATH"
 
 USER duser
 
-CMD ["entrypoint.sh"]
+CMD ["docker-entrypoint.sh"]

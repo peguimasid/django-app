@@ -23,5 +23,6 @@ db:
 dbdown:
 	docker compose stop db
 
-local:
+# Run project locally
+local: db
 	python manage.py runserver

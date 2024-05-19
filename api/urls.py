@@ -1,5 +1,5 @@
 """
-URL configuration for core project.
+URL configuration for api project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -19,6 +19,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("test/", include("core.test_app.endpoints")),
+    path("test/", include("api.test_app.endpoints")),
     path("admin/", admin.site.urls),
 ]

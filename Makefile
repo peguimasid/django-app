@@ -22,3 +22,6 @@ db:
 # Stop only the postgres database
 dbdown:
 	docker compose stop db
+
+local:
+	python manage.py runserver
